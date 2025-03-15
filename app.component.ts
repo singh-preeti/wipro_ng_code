@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -6,18 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
- 
-  userObj : any = {
-    fisrtName: '',
-    lastName: '',
-    userName: '',
-    city: '',
-    state:'',
-    zip: '',
-    isTermsAgree: false
+
+  getList : any [] = [];
+   
+  constructor(private http: HttpClient){
+
   }
-  onSave(){
-    const formValue = this.userObj;
+
+  getPost(){
+
+    this.http.get("https://jsonplaceholder.typicode.com/posts").subscribe((result:any) =>{
+      this. getList = result;
+    })
   }
-  
 }
